@@ -1,13 +1,10 @@
 import Image from "next/image";
 import { cookies } from 'next/headers';
 
-export default async function Home() {
+export default async function Dashboard() {
   // const data = await logIn("bb8","Test10082025")
   // await createSession(data)
   // console.log(data)
-    const cookieStore = await cookies();
-  const sessionCookie = cookieStore.has('session')
-  console.log('/ SESSION COOKIE',sessionCookie)
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -28,7 +25,7 @@ export default async function Home() {
             .
           </li>
           <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
+            `12
           </li>
         </ol>
 
