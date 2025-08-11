@@ -1,6 +1,5 @@
 
 import { LoginForm } from '@/components/forms/LoginForm';
-import { Suspense } from 'react';
 import LayoutImage from '@/public/assets/images/login_layout.png'
 export default async function LoginPage() {
  
