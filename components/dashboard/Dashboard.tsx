@@ -1,5 +1,8 @@
 'use client'
 
+import { EmojiKeyboard } from '../ui/EmojiKeyboard';
+import { Sidebar } from './sidebar/Sidebar';
+
 export const Dashboard = () =>{
 
          const logoutFNC = async()=>{
@@ -9,5 +12,8 @@ export const Dashboard = () =>{
     }); 
     }
 
-    return <button onClick={logoutFNC}>LOGOUT</button>
+    return <main className='flex flex-row p-2.5 bg-gray-50 w-full h-full min-h-[100vh]'>
+      <Sidebar/>
+      <EmojiKeyboard/>
+      <button onClick={logoutFNC}>LOGOUT</button></main>
 }

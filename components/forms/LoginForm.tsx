@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { z } from 'zod'
 import { InputTextForm } from './inputForm/InputTextForm'
+import { useRouter } from 'next/navigation'
 
 type LoginFormType={
   login:{
@@ -43,33 +44,17 @@ success:true,
 
 export const  LoginForm = () =>{
 
+const router = useRouter()
+
   const [loginForm,setLoginForm] = useState(INITIAL_LOGIN_FORM)
+
 const loginHandler = (e:React.ChangeEvent<HTMLInputElement>) =>{
 setLoginForm((prevState:LoginFormType)=>({...prevState,login:{...prevState.login,value:e.target.value}}))
-console.log(loginForm)
 }
+
 const passwordHandler = (e:React.ChangeEvent<HTMLInputElement>) =>{
 setLoginForm((prevState:LoginFormType)=>({...prevState,password:{...prevState.password,value:e.target.value}}))
-console.log(loginForm)
 }
-//     const loginFNC = async()=>{
-//  const data= await fetch('http://localhost:3000/api/login', {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({login:"bb8",password:"Test10082025"}),
-//     }); 
-//     return data
-//     }
-    // loginFNC()
-//      const logoutFNC = async()=>{
-//  const data= await fetch('http://localhost:3000/api/logout', {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({login:"bb8",password:"Test10082025"}),
-//     }); 
-//     return data
-//     }
-    // logoutFNC()
     
 const submitFormHandler = async(e:React.FormEvent) =>{
 e.preventDefault();
@@ -94,6 +79,7 @@ if (!result.success) {
     setLoginForm(newState);
     return;
   }
+
  const res= await fetch('http://localhost:3000/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -111,7 +97,7 @@ if (!result.success) {
     }
     return
     } 
-
+router.push('/dashboard')
 
 }
 
@@ -124,7 +110,7 @@ if (!result.success) {
          {!loginForm.success && (
     <p className="text-red-500 text-sm">{loginForm.error}</p>
   )}
-<button type='submit' className='py-2.5 px-4 bg-purple-600 text-white rounded-lg w-fit h-min'>Login me</button>
+<button type='submit' className='py-2.5 px-4 bg-purple-600 text-white rounded-lg w-fit h-min cursor-pointer'>Login me</button>
     </form>
     <p className='font-normal'>Don’t have account? <Link className='text-purple-600' href="/register">Register now</Link></p>
       </div>
