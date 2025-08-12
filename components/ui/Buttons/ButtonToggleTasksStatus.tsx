@@ -1,7 +1,9 @@
 'use client'
 
+import { useTasksStore } from '@/store/useTasksStore'
+
 export const ButtonToggleTasksStatus = () =>{
+const {showIncompletedTasks,toggleShowCompletedTasks} = useTasksStore()
 
-
-    return <button className='h-min py-2.5 px-3 rounded-[8px] bg-white font-semibold text-[14px] text-gray-900 cursor-pointer'>Show completed</button>
+    return <button onClick={toggleShowCompletedTasks} className='h-min py-2.5 px-3 rounded-[8px] bg-white font-semibold text-[14px] text-gray-900 cursor-pointer'>{showIncompletedTasks?"Hide completed":"Show completed"}</button>
 }

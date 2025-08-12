@@ -2,9 +2,11 @@
 
 import { ButtonToggleTasksStatus } from '@/components/ui/Buttons/ButtonToggleTasksStatus'
 import { usePocketsStore } from '@/store/usePocketsStore'
+import { useTasksStore } from '@/store/useTasksStore'
 
 export const Header = () =>{
 const {selectedPocket} = usePocketsStore()
+const {tasks,incompletedTasks} = useTasksStore()
 if(selectedPocket._id==='')return null
     return <div className='flex flex-row justify-between'>
         <div className='flex flex-col gap-2'>
@@ -12,7 +14,7 @@ if(selectedPocket._id==='')return null
 <img src={`/joypixels/${selectedPocket.emoji}.png`} className='w-[24px] h-[24px]'/>
 {selectedPocket.name}
             </span>
-            <span className='text-gray-600 text-[14px]'>Remaining 8 from 16 tasks. </span>
+            <span className='text-gray-600 text-[14px]'>Remaining {incompletedTasks.length} from {tasks.length} tasks. </span>
         </div>
         <ButtonToggleTasksStatus/>
     </div>

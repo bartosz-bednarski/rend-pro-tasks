@@ -1,8 +1,6 @@
 'use client'
-import LayoutImage from '@/public/assets/images/login_layout.png'
 import { RegisterForm } from './RegisterForm'
 import { useState } from 'react'
-import { boolean } from 'zod'
 import { RegisterMainViewForm } from './RegisterMainView'
 import { useRouter } from 'next/navigation'
 
@@ -25,7 +23,7 @@ const INITIAL_REGISTER_FORM:RegisterFormType = {
     lastName:''
 }
 
-const INITIAL_STATUS_FORM = {
+const INITIAL_STATUS_FORM:FormStatusType = {
     form1Ok:false,
     form2Ok:false,
 }
@@ -33,6 +31,7 @@ const INITIAL_STATUS_FORM = {
 export const RegisterLayout = () =>{
 
 const router = useRouter()
+
 
     const [form,setForm] = useState(INITIAL_REGISTER_FORM)
     const [formsStatus,setFormsStatus] = useState(INITIAL_STATUS_FORM)
@@ -47,7 +46,7 @@ setFormsStatus((prevState)=>({...prevState,form1Ok:true}))
 setForm((prevState)=>({...prevState,firstName,lastName}))
 setFormsStatus((prevState)=>({...prevState,form1Ok:true}))
 
- const res= await fetch('http://localhost:3000/api/auth/register', {
+ const res= await fetch('/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({login:form.login,password:form.password,firstName:firstName,lastName:lastName}),

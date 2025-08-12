@@ -4,6 +4,7 @@ import z from 'zod'
 import { useState } from 'react'
 import { InputTextForm } from '../../ui/Inputs/InputTextForm'
 import { InputFileForm } from '../../ui/Inputs/InputFileForm'
+import { useUsersStore } from '@/store/useUsersStore'
 
 
 
@@ -50,6 +51,7 @@ interface RegisterMainViewProps{
 }
 
 export const RegisterMainViewForm = ({onSuccess}:RegisterMainViewProps) =>{
+const {prevAvatar} = useUsersStore()
 
     const [mainViewForm,setMainViewForm] = useState(INITIAL_REGISTER_MAIN_VIEW_FORM)
 
@@ -65,7 +67,6 @@ setMainViewForm((prevState:RegisterMainViewFormType)=>({...prevState,lastName:{.
     const submitFormHandler = async(e:React.FormEvent) =>{
 e.preventDefault();
 setMainViewForm({...INITIAL_REGISTER_MAIN_VIEW_FORM})
-// setMainViewForm(INITIAL_REGISTER_MAIN_VIEW_FORM)
 const result = registerMainViewSchema.safeParse({
       firstName: mainViewForm.firstName.value,
       lastName: mainViewForm.lastName.value
@@ -87,8 +88,8 @@ if (!result.success) {
     return;
   }
  
-const avatar = localStorage.getItem("avatar");
- if (!avatar || avatar.trim() === "") {
+const avatar = prevAvatar;
+ if (!avatar) {
     setMainViewForm(prev => ({
       ...prev,
       avatar: {

@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import AvatarDefault from '@/public/assets/images/avatar_default.png'
+import { useUsersStore } from '@/store/useUsersStore'
 
 interface InputFileFormProps {
 success:boolean,
@@ -8,18 +9,20 @@ error:string
 }
 
 export const InputFileForm = ({success,error}:InputFileFormProps) =>{
-
+const {prevAvatar,setPrevAvatar} = useUsersStore()
 const [avatarPreview, setAvatarPreview] = useState<string | null>(null)
  const saveImage = (e:React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
   if (!file) return
-    const reader = new FileReader();
-        reader.addEventListener('load', ()=>{
-            if((typeof reader.result)!=='string')return
-            localStorage.setItem('avatar',reader.result)
-            setAvatarPreview(reader.result)
-        })
-        reader.readAsDataURL(file);
+  setAvatarPreview(URL.createObjectURL(file))
+  setPrevAvatar(file)
+    // const reader = new FileReader();
+    //     reader.addEventListener('load', ()=>{
+    //         if((typeof reader.result)!=='string')return
+    //         localStorage.setItem('avatar',reader.result)
+    //         setAvatarPreview(reader.result)
+    //     })
+    //     reader.readAsDataURL(file);
   };
 
     return <><div className='flex flex-row gap-2.5'>
@@ -37,12 +40,16 @@ const [avatarPreview, setAvatarPreview] = useState<string | null>(null)
       className="hidden"
     />
   </label>
-    <img
+    {/* <img
       src={avatarPreview?avatarPreview:AvatarDefault.src}
       alt="Avatar preview"
       className="w-[38px] h-[38px] rounded-full object-cover"
-    />
-    
+    /> */}
+    {avatarPreview&&<img
+      src={avatarPreview}
+      alt="Avatar preview"
+      className="w-[38px] h-[38px] rounded-full object-cover"
+    />}
   </div> {!success && (
       <p className="text-red-500 text-sm">{error}</p>
     )}</>
