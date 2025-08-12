@@ -1,10 +1,9 @@
 'use client'
 import LayoutImage from '@/public/assets/images/register_main_view_layout.jpg'
-
 import z from 'zod'
 import { useState } from 'react'
-import { InputTextForm } from '../InputForm/InputTextForm'
-import { InputFileForm } from '../InputForm/InputFileForm'
+import { InputTextForm } from '../../ui/Inputs/InputTextForm'
+import { InputFileForm } from '../../ui/Inputs/InputFileForm'
 
 
 

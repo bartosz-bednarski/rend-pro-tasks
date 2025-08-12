@@ -10,7 +10,6 @@ error:string
 export const InputFileForm = ({success,error}:InputFileFormProps) =>{
 
 const [avatarPreview, setAvatarPreview] = useState<string | null>(null)
-console.log(success,error)
  const saveImage = (e:React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
   if (!file) return

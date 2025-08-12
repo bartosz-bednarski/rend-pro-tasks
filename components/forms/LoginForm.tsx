@@ -4,7 +4,7 @@ import PasswordIcon from '@/public/assets/icons/carbon_password.svg'
 import Link from 'next/link'
 import { useState } from 'react'
 import { z } from 'zod'
-import { InputTextForm } from './InputForm/InputTextForm'
+import { InputTextForm } from '../ui/Inputs/InputTextForm'
 import { useRouter } from 'next/navigation'
 
 type LoginFormType={

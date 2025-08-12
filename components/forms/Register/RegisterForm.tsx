@@ -5,7 +5,7 @@ import LayoutImage from '@/public/assets/images/login_layout.png'
 import Link from 'next/link'
 import z from 'zod'
 import { useState } from 'react'
-import { InputTextForm } from '../InputForm/InputTextForm'
+import { InputTextForm } from '../../ui/Inputs/InputTextForm'
 
 type RegisterFormType={
   login:{

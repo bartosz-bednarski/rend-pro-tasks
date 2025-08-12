@@ -1,14 +1,24 @@
 'use client'
 
-import { EmojiKeyboard } from '../ui/EmojiKeyboard';
+
+import { ButtonToggleModal } from '../ui/Buttons/ButtonCreateNewTask';
+import { ModalNewTask } from '../ui/Modals/ModalNewTask';
 import { Sidebar } from './Sidebar/Sidebar';
+import { useEffect } from 'react';
+import { usePocketsStore } from '@/store/usePocketsStore';
 
 export const Dashboard = () =>{
+  const {getAllPockets,pockets} = usePocketsStore()
+  useEffect(()=>{
+getAllPockets()
+  },[])
+       console.log(pockets) 
 
-        
-
-    return <main className='flex flex-row p-2.5 bg-gray-50 w-full h-full min-h-[100vh]'>
+    return <><main className='flex flex-row p-2.5 bg-gray-50 w-full h-full min-h-[100vh]'>
       <Sidebar/>
-      <EmojiKeyboard/>
+      <ModalNewTask/>
+      <ButtonToggleModal/>
       </main>
+      
+      </>
 }

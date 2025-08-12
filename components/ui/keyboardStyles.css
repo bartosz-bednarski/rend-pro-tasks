@@ -3,6 +3,8 @@
     background-color: #F6F6F6;
     padding: 0px;
     border-radius: 10px;
+    /* overflow-x: auto;
+    overflow-y: hidden; */
 }
 .EmojiPickerReact .epr-category-nav svg {
   display: none !important; /* chowamy ikonki */
@@ -16,6 +18,7 @@
     background-image: none !important;
     width: 140px!important;
       border-radius: 10px;
+      flex: none;
 }
 .epr-header .epr-category-nav .epr-btn:focus:before{
     border: none!important;

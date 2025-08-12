@@ -1,11 +1,17 @@
 'use client'
 import dynamic from 'next/dynamic';
+import {Categories, EmojiClickData} from 'emoji-picker-react'
+import './keyboardStyles.css'
+import { useTasksStore } from '@/store/useTasksStore';
 
 const EmojiPicker = dynamic(() => import('emoji-picker-react'), { ssr: false });
-import {Categories} from 'emoji-picker-react'
-import './keyboardStyles.css'
-export const EmojiKeyboard = () =>{
-    return <><EmojiPicker  skinTonesDisabled style={{width:399}}  searchDisabled  lazyLoadEmojis={true} categories={[
+
+interface EmojiKeyboardProps{
+    onClick:(emoji:string)=>void;
+}
+export const EmojiKeyboard = ({onClick}:EmojiKeyboardProps) =>{
+
+    return <><EmojiPicker  skinTonesDisabled style={{width:'100%',height:258,border:0}}  searchDisabled  lazyLoadEmojis={true} categories={[
         {
           category: Categories.SMILEYS_PEOPLE,
           name: "Smileys People"
@@ -18,6 +24,26 @@ export const EmojiKeyboard = () =>{
           category: Categories.FOOD_DRINK,
           name: "Food & Drink"
         },
-    ]}/>
+        {
+          category: Categories.TRAVEL_PLACES,
+          name: "Travel & Places"
+        },
+         {
+          category: Categories.ACTIVITIES,
+          name: "Activities"
+        },
+         {
+          category: Categories.OBJECTS,
+          name: "Objects"
+        },
+         {
+          category: Categories.SYMBOLS,
+          name: "Symbols"
+        },
+         {
+          category: Categories.FLAGS,
+          name: "Flags"
+        },
+    ]} onEmojiClick={(emojiData)=>onClick(emojiData.unified)}/>
     </>
 }

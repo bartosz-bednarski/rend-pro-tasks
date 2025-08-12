@@ -1,7 +1,7 @@
 'use client'
 
-import { ButtonLogOut } from './ButtonLogOut'
-import { Pockets } from './Pockets/Pockets'
+import { ButtonLogOut } from '../../ui/Buttons/ButtonLogOut'
+import { Pockets } from './Pockets'
 
 
 export const Sidebar = () =>{

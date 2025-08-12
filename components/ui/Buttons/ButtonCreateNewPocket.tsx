@@ -1,9 +1,13 @@
 'use client'
 import Icon from '@/public/assets/icons/fluent_key-command-24-regular.svg'
-export const ButtonCreateNewPocket = () =>{
 
+interface ButtonCreateNewPocketProps{
+    onClick:()=>void
+}
 
-    return <button className='flex flex-row justify-between w-full rounded-full py-2 pl-3 pr-2 bg-gray-50 cursor-pointer'>
+export const ButtonCreateNewPocket = ({onClick}:ButtonCreateNewPocketProps) =>{
+
+    return <button onClick={onClick} className='flex flex-row justify-between w-full rounded-full py-2 pl-3 pr-2 bg-gray-50 cursor-pointer'>
 <div className='flex flex-row items-center gap-[18px] text-black font-medium leading-[100%]'>
     <span className='text-[16px]'>+</span>
     <span className='text-[14px]'>Create new pocket</span>
