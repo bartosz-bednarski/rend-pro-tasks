@@ -1,9 +1,11 @@
 'use client'
 import LayoutImage from '@/public/assets/images/register_main_view_layout.jpg'
-import { InputTextForm } from '../inputForm/InputTextForm'
+
 import z from 'zod'
 import { useState } from 'react'
-import { InputFileForm } from '../inputForm/inputFileForm'
+import { InputTextForm } from '../InputForm/InputTextForm'
+import { InputFileForm } from '../InputForm/InputFileForm'
+
 
 
 type RegisterMainViewFormType={

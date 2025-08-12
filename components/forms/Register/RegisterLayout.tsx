@@ -47,7 +47,7 @@ setFormsStatus((prevState)=>({...prevState,form1Ok:true}))
 setForm((prevState)=>({...prevState,firstName,lastName}))
 setFormsStatus((prevState)=>({...prevState,form1Ok:true}))
 
- const res= await fetch('http://localhost:3000/api/register', {
+ const res= await fetch('http://localhost:3000/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({login:form.login,password:form.password,firstName:firstName,lastName:lastName}),

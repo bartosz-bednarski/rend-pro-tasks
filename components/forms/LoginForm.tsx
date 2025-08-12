@@ -4,7 +4,7 @@ import PasswordIcon from '@/public/assets/icons/carbon_password.svg'
 import Link from 'next/link'
 import { useState } from 'react'
 import { z } from 'zod'
-import { InputTextForm } from './inputForm/InputTextForm'
+import { InputTextForm } from './InputForm/InputTextForm'
 import { useRouter } from 'next/navigation'
 
 type LoginFormType={
@@ -80,7 +80,7 @@ if (!result.success) {
     return;
   }
 
- const res= await fetch('http://localhost:3000/api/login', {
+ const res= await fetch('http://localhost:3000/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({login:loginForm.login.value,password:loginForm.password.value}),
