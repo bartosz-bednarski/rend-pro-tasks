@@ -1,10 +1,10 @@
 'use client'
 
 import { ButtonCreateNewPocket } from '@/components/ui/Buttons/ButtonCreateNewPocket'
-import { ButtonPocketCategory } from '@/components/ui/Buttons/ButtonPocketCategory'
 import { usePocketsStore } from '@/store/usePocketsStore'
 import { InputSelectPocket } from '../Inputs/InputSelectPocket'
 import { useState } from 'react'
+import { useTasksStore } from '@/store/useTasksStore'
 
 const INITIAL_TASK_FORM = {
     pocketId:'',
@@ -14,7 +14,10 @@ const INITIAL_TASK_FORM = {
 }
 
 export const AddTask = () =>{
-const {pockets,showNewPocket,getAllPockets} = usePocketsStore()
+
+const {pockets,showNewPocket,getAllPockets,selectedPocket} = usePocketsStore()
+const {getAllTasks} = useTasksStore()
+
 const [addTaskForm,setAddTaskForm] = useState({
     pocketId:'',
     description:'',
@@ -61,6 +64,10 @@ setAddTaskForm(INITIAL_TASK_FORM)
      },2000)
     } 
     getAllPockets()
+    if(selectedPocket._id!==''){
+getAllTasks(selectedPocket._id)
+    }
+    
 }
 
     return <div className='flex flex-col mb-[77px] w-[399px] p-2.5 bg-white rounded-[19px] gap-4'>

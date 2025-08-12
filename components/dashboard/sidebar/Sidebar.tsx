@@ -6,7 +6,7 @@ import { Pockets } from './Pockets'
 
 export const Sidebar = () =>{
 
-    return <div className='flex flex-col bg-white rounded-[14px] w-[274px] py-[40px] px-[24px] justify-between'>
+    return <div className='shrink-0 flex flex-col bg-white rounded-[14px] w-[274px] py-[40px] px-[24px] justify-between'>
         <Pockets/>
         <ButtonLogOut/>
     </div>
