@@ -8,7 +8,7 @@ import {Task, useTasksStore} from '@/store/useTasksStore';
 import {useState} from 'react';
 import {AnimatePresence, motion} from 'motion/react';
 
-export const TasksItem:React.FC<Task> = ({description, isCompleted, _id}) => {
+export const TasksItem: React.FC<Task> = ({description, isCompleted, _id}) => {
   const {selectedPocket, getAllPockets} = usePocketsStore();
   const {getAllTasks} = useTasksStore();
 
@@ -48,7 +48,7 @@ export const TasksItem:React.FC<Task> = ({description, isCompleted, _id}) => {
           isCompleted: !isCompleted,
         }),
       });
-      const data: {success: boolean; data: []} = await res.json();
+      const data: {success: boolean} = await res.json();
       if (!data.success) return;
     } catch (err) {
       console.error('Błąd pobierania tasks', err);

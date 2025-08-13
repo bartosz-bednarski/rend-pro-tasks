@@ -9,7 +9,7 @@ interface InputFormProps {
   placeholder: string;
 }
 
-export const InputTextForm:React.FC<InputFormProps> = ({
+export const InputTextForm: React.FC<InputFormProps> = ({
   value,
   icon,
   onChange,
@@ -20,7 +20,7 @@ export const InputTextForm:React.FC<InputFormProps> = ({
   return (
     <>
       <div className="w-full h-10 flex flex-row items-center justify-center bg-gray-50 py-2.5 px-3 gap-3 rounded-lg">
-        {icon && <img className="w-5 h-5" src={icon.src} alt='emoji'/>}
+        {icon && <img className="w-5 h-5" src={icon.src} alt="emoji" />}
         <input
           onChange={(e) => onChange(e)}
           value={value}

@@ -5,7 +5,7 @@ import IconCommand from '@/public/assets/icons/fluent_key-command-24-regular-whi
 import {usePocketsStore} from '@/store/usePocketsStore';
 import {motion} from 'motion/react';
 
-export const ButtonToggleModal:React.FC = () => {
+export const ButtonToggleModal: React.FC = () => {
   const {modalOpen, newPocketOpen, toggleModalOpen, hideNewPocket} =
     usePocketsStore();
 

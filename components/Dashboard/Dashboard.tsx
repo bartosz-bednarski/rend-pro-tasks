@@ -6,13 +6,13 @@ import {Sidebar} from './Sidebar/Sidebar';
 import {useEffect} from 'react';
 import {usePocketsStore} from '@/store/usePocketsStore';
 import {TasksBoard} from './TasksBoard/TasksBoard';
+import {ModalEditUser} from '../ui/Modals/ModalEditUser';
 
-export const Dashboard:React.FC = () => {
+export const Dashboard: React.FC = () => {
   const {getAllPockets, pockets} = usePocketsStore();
   useEffect(() => {
     getAllPockets();
   }, []);
-  console.log(pockets);
 
   return (
     <>
@@ -20,6 +20,7 @@ export const Dashboard:React.FC = () => {
         <Sidebar />
         <TasksBoard />
         <ModalNewTask />
+        <ModalEditUser />
         <ButtonToggleModal />
       </main>
     </>

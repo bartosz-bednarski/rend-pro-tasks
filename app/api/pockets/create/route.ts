@@ -17,7 +17,6 @@ export async function POST(req: Request) {
     },
     body: JSON.stringify({emoji, name}),
   });
-  console.log(res);
   if (!res.ok) {
     return NextResponse.json({error: 'Invalid credentials'}, {status: 401});
   }

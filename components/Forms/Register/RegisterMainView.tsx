@@ -48,7 +48,9 @@ interface RegisterMainViewProps {
   onSuccess: (firstName: string, lastName: string) => void;
 }
 
-export const RegisterMainViewForm:React.FC<RegisterMainViewProps> = ({onSuccess}) => {
+export const RegisterMainViewForm: React.FC<RegisterMainViewProps> = ({
+  onSuccess,
+}) => {
   const [mainViewForm, setMainViewForm] = useState(
     INITIAL_REGISTER_MAIN_VIEW_FORM
   );

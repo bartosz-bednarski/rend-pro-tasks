@@ -18,6 +18,7 @@ type Actions = {
   toggleModalOpen: () => void;
   getAllPockets: () => void;
   setSelectedPocket: (pocketId: string) => void;
+  resetSelectedPocket: () => void;
 };
 export type Pocket = {
   createdAt: string;
@@ -58,7 +59,6 @@ export const usePocketsStore = create<State & Actions>()(
       try {
         const res = await fetch('/api/pockets/getAll');
         const data: {success: boolean; data: Pocket[]} = await res.json();
-        console.log('Pockets Store', data);
         if (!data.success) return;
         set((state) => {
           state.pockets = data.data;
@@ -77,6 +77,14 @@ export const usePocketsStore = create<State & Actions>()(
           _id: pocketId,
           name: filteredPocket[0].name,
           emoji: filteredPocket[0].emoji,
+        };
+      }),
+    resetSelectedPocket: () =>
+      set((state) => {
+        state.selectedPocket = {
+          _id: '',
+          name: '',
+          emoji: '',
         };
       }),
   }))

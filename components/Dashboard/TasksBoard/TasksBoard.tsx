@@ -4,7 +4,7 @@ import {useTasksStore} from '@/store/useTasksStore';
 import {Header} from './Header';
 import {TasksItem} from './TaskItem';
 
-export const TasksBoard:React.FC = () => {
+export const TasksBoard: React.FC = () => {
   const {tasks, incompletedTasks, showIncompletedTasks} = useTasksStore();
 
   if (showIncompletedTasks) {

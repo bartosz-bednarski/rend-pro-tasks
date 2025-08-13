@@ -9,7 +9,7 @@ const EmojiPicker = dynamic(() => import('emoji-picker-react'), {ssr: false});
 interface EmojiKeyboardProps {
   onClick: (emoji: string) => void;
 }
-export const EmojiKeyboard:React.FC<EmojiKeyboardProps> = ({onClick}) => {
+export const EmojiKeyboard: React.FC<EmojiKeyboardProps> = ({onClick}) => {
   return (
     <>
       <EmojiPicker

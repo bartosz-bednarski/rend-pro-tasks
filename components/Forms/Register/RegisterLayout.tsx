@@ -40,6 +40,7 @@ const setAvatarAPI = async (
     lastName: data.data.lastName,
   };
   setUserData(dataMod);
+  localStorage.removeItem('avatar');
 };
 
 interface RegisterFormType {
@@ -66,7 +67,7 @@ const INITIAL_STATUS_FORM: FormStatusType = {
   form2Ok: false,
 };
 
-export const RegisterLayout:React.FC = () => {
+export const RegisterLayout: React.FC = () => {
   const {setUserData} = useUsersStore();
   const router = useRouter();
 

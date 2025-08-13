@@ -7,7 +7,7 @@ interface ButtonCreateNewPocketProps {
   mobilePlus: boolean;
 }
 
-export const ButtonCreateNewPocket:React.FC<ButtonCreateNewPocketProps> = ({
+export const ButtonCreateNewPocket: React.FC<ButtonCreateNewPocketProps> = ({
   onClick,
   mobilePlus,
 }) => {

@@ -12,13 +12,11 @@ export async function POST(req: Request) {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({login, password, firstName, lastName}),
   });
-  console.log(res);
   if (!res.ok) {
     return NextResponse.json({error: 'Invalid credentials'}, {status: 401});
   }
 
   const data = await res.json();
-  console.log('DATA', data);
   const token = data.token;
 
   // decode token to get expiry

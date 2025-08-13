@@ -11,7 +11,7 @@ const INITIAL_POCKET_FORM = {
   error: false,
 };
 
-export const AddPocket:React.FC = () => {
+export const AddPocket: React.FC = () => {
   const {hideNewPocket, getAllPockets} = usePocketsStore();
   const [pocketForm, setPocketForm] = useState(INITIAL_POCKET_FORM);
 
@@ -59,7 +59,8 @@ export const AddPocket:React.FC = () => {
         >
           <img
             src={`/joypixels/${pocketForm.emoji}.png`}
-            className="w-[24px] h-[24px]" alt={`emoji ${pocketForm.emoji}`}
+            className="w-[24px] h-[24px]"
+            alt={`emoji ${pocketForm.emoji}`}
           />
           <input
             onChange={(e) => nameHandler(e)}

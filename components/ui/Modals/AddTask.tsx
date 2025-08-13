@@ -13,9 +13,14 @@ const INITIAL_TASK_FORM = {
   errorDescription: false,
 };
 
-export const AddTask:React.FC = () => {
-  const {pockets, showNewPocket, getAllPockets, selectedPocket} =
-    usePocketsStore();
+export const AddTask: React.FC = () => {
+  const {
+    pockets,
+    showNewPocket,
+    getAllPockets,
+    selectedPocket,
+    toggleModalOpen,
+  } = usePocketsStore();
   const {getAllTasks} = useTasksStore();
 
   const [addTaskForm, setAddTaskForm] = useState({
@@ -73,6 +78,7 @@ export const AddTask:React.FC = () => {
     if (selectedPocket._id !== '') {
       getAllTasks(selectedPocket._id);
     }
+    toggleModalOpen();
   };
 
   return (

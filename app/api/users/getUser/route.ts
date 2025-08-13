@@ -19,6 +19,5 @@ export async function GET() {
     return NextResponse.json({error: 'Invalid credentials'}, {status: 401});
   }
   const data = await res.json();
-  console.log('user data api', data);
   return NextResponse.json({success: true, data: data});
 }

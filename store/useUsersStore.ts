@@ -18,6 +18,7 @@ type State = {
   _id: string;
   firstName: string;
   lastName: string;
+  modalOpen: boolean;
 };
 
 type Actions = {
@@ -27,6 +28,8 @@ type Actions = {
     firstName: string;
     lastName: string;
   }) => void;
+  toggleModalOpen: () => void;
+  updateAvatar: (aavatar: string) => void;
 };
 
 export const useUsersStore = create<State & Actions>()(
@@ -36,6 +39,7 @@ export const useUsersStore = create<State & Actions>()(
     _id: '',
     firstName: '',
     lastName: '',
+    modalOpen: false,
     setUserData: (data: {
       avatar: string;
       _id: string;
@@ -49,5 +53,13 @@ export const useUsersStore = create<State & Actions>()(
         state.lastName = data.lastName;
       });
     },
+    toggleModalOpen: () =>
+      set((state) => {
+        state.modalOpen = !state.modalOpen;
+      }),
+    updateAvatar: (avatar) =>
+      set((state) => {
+        state.avatar = avatar;
+      }),
   }))
 );

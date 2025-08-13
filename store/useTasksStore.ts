@@ -20,6 +20,7 @@ export type Task = {
 type Actions = {
   getAllTasks: (pocketId: string) => void;
   toggleShowCompletedTasks: () => void;
+  resetActiveTasks: () => void;
 };
 
 export const useTasksStore = create<State & Actions>()(
@@ -49,6 +50,13 @@ export const useTasksStore = create<State & Actions>()(
     toggleShowCompletedTasks: () => {
       set((state) => {
         state.showIncompletedTasks = !state.showIncompletedTasks;
+      });
+    },
+    resetActiveTasks: () => {
+      set((state) => {
+        state.tasks = [];
+        state.incompletedTasks = [];
+        state.showIncompletedTasks = false;
       });
     },
   }))

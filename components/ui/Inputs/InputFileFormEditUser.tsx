@@ -1,27 +1,31 @@
 'use client';
 import React from 'react';
 import {useState} from 'react';
-import AvatarDefault from '@/public/assets/images/avatar_default.png';
 
-interface InputFileFormProps {
+interface InputFileFormEditUserProps {
   success: boolean;
   error: string;
+  avatarDefault: string;
+  avatarHandler: (avatar: string) => void;
 }
 
-export const InputFileForm: React.FC<InputFileFormProps> = ({
+export const InputFileFormEditUser: React.FC<InputFileFormEditUserProps> = ({
   success,
+  avatarHandler,
+  avatarDefault,
   error,
 }) => {
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [avatarPreview, setAvatarPreview] = useState<string>(avatarDefault);
   const saveImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      if (typeof reader.result !== 'string') return;
-      localStorage.setItem('avatar', reader.result);
-      setAvatarPreview(reader.result);
-    });
+    reader.onload = () => {
+      if (typeof reader.result === 'string') {
+        setAvatarPreview(reader.result);
+        avatarHandler(reader.result);
+      }
+    };
     reader.readAsDataURL(file);
   };
 
@@ -44,7 +48,7 @@ export const InputFileForm: React.FC<InputFileFormProps> = ({
           />
         </label>
         <img
-          src={avatarPreview ? avatarPreview : AvatarDefault.src}
+          src={avatarPreview ? avatarPreview : avatarDefault}
           alt="Avatar preview"
           className="w-[38px] h-[38px] rounded-full object-cover"
         />

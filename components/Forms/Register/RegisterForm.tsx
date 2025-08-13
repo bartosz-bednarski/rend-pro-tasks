@@ -44,7 +44,10 @@ interface RegisterFormProps {
   fetchError: boolean;
 }
 
-export const RegisterForm:React.FC<RegisterFormProps> = ({onSuccess, fetchError}) => {
+export const RegisterForm: React.FC<RegisterFormProps> = ({
+  onSuccess,
+  fetchError,
+}) => {
   const [registerForm, setRegisterForm] = useState(INITIAL_LOGIN_FORM);
   const loginHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRegisterForm((prevState: RegisterFormType) => ({

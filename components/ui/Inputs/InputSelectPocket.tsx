@@ -7,7 +7,7 @@ interface InputSelectPocketProps extends Pocket {
   onChange: (_id: string) => void;
 }
 
-export const InputSelectPocket:React.FC<InputSelectPocketProps> = ({
+export const InputSelectPocket: React.FC<InputSelectPocketProps> = ({
   selected,
   _id,
   emoji,

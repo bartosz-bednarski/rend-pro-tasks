@@ -18,7 +18,6 @@ export async function POST(req: Request) {
   }
 
   const data = await res.json();
-  console.log('DATA', data);
   const token = data.token;
 
   // decode token to get expiry

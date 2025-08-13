@@ -3,7 +3,12 @@ import React from 'react';
 import {Pocket, usePocketsStore} from '@/store/usePocketsStore';
 import {useTasksStore} from '@/store/useTasksStore';
 
-export const ButtonSelectPocket:React.FC<Pocket> = ({emoji, name, tasks, _id}) => {
+export const ButtonSelectPocket: React.FC<Pocket> = ({
+  emoji,
+  name,
+  tasks,
+  _id,
+}) => {
   const {selectedPocket, setSelectedPocket} = usePocketsStore();
   const {getAllTasks} = useTasksStore();
 
@@ -18,7 +23,11 @@ export const ButtonSelectPocket:React.FC<Pocket> = ({emoji, name, tasks, _id}) =
       className={`flex flex-row sm:w-full w-fit h-min py-1.5 px-2 justify-between ${selectedPocket._id === _id && 'bg-[#6529FE]'} items-center rounded-[6px] cursor-pointer`}
     >
       <div className={`flex flex-row gap-4  items-center`}>
-        <img className="w-[16px] h-[16px]" src={`/joypixels/${emoji}.png`} alt={`emoji ${emoji}`}/>
+        <img
+          className="w-[16px] h-[16px]"
+          src={`/joypixels/${emoji}.png`}
+          alt={`emoji ${emoji}`}
+        />
         <span
           className={`${selectedPocket._id === _id ? 'text-white' : 'black'} sm:block hidden font-medium`}
         >
