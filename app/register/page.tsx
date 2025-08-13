@@ -1,5 +1,5 @@
 import {RegisterLayout} from '@/components/Forms/Register/RegisterLayout';
 
-export default async function RegisterPage() {
+export default function RegisterPage() {
   return <RegisterLayout />;
 }
