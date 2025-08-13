@@ -1,28 +1,35 @@
-'use server'
-import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
+'use server';
+import {NextResponse} from 'next/server';
+import {cookies} from 'next/headers';
 
 export async function POST(req: Request) {
-  const { avatar } = await req.json();
- const cookieStore = await cookies();
-    const tokenCookie = cookieStore.get('session')
-    const token = tokenCookie?.value
+  const cookieStore = await cookies();
+  const tokenCookie = cookieStore.get('session');
+  const token = tokenCookie?.value;
 
-  const url = "https://recruitment-task.jakubcloud.pl/users/avatar";
+  const formData = await req.formData();
+  const file = formData.get('file') as File;
+  if (!file) {
+    return NextResponse.json({error: 'No file provided'}, {status: 400});
+  }
+
+  const uploadForm = new FormData();
+  uploadForm.append('file', file);
+
+  const url = 'https://recruitment-task.jakubcloud.pl/users/avatar';
   const res = await fetch(url, {
     method: 'PUT',
-    headers: { 'Authorization':`Bearer ${token}`,'Content-Type': 'application/json' },
-    body: JSON.stringify({ file:avatar}),
+    headers: {
+      Authorization: `Bearer ${token}`,
+      // UWAGA: NIE ustawiaj tu Content-Type ręcznie — fetch ustawi boundary automatycznie
+    },
+    body: uploadForm,
   });
-console.log(res)
+  console.log(res);
   if (!res.ok) {
-    return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
+    return NextResponse.json({error: 'Invalid credentials'}, {status: 401});
   }
   const data = await res.json();
-  console.log(data)
 
-
- 
-
-  return NextResponse.json({ success: true,data:data });
+  return NextResponse.json({success: true, data: data});
 }

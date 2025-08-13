@@ -1,28 +1,28 @@
-'use server'
-import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
-import { jwtDecode } from 'jwt-decode';
+'use server';
+import {NextResponse} from 'next/server';
+import {cookies} from 'next/headers';
+import {jwtDecode} from 'jwt-decode';
 
 export async function POST(req: Request) {
-  const { login, password,firstName,lastName } = await req.json();
+  const {login, password, firstName, lastName} = await req.json();
 
-  const url = "https://recruitment-task.jakubcloud.pl/auth/register";
+  const url = 'https://recruitment-task.jakubcloud.pl/auth/register';
   const res = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ login, password,firstName,lastName }),
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({login, password, firstName, lastName}),
   });
-console.log(res)
+  console.log(res);
   if (!res.ok) {
-    return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
+    return NextResponse.json({error: 'Invalid credentials'}, {status: 401});
   }
 
   const data = await res.json();
-  console.log('DATA',data)
+  console.log('DATA', data);
   const token = data.token;
 
   // decode token to get expiry
-  const decoded: { exp?: number } = jwtDecode(token);
+  const decoded: {exp?: number} = jwtDecode(token);
   const expiresAt = decoded.exp ? new Date(decoded.exp * 1000) : undefined;
 
   // set cookie
@@ -35,5 +35,5 @@ console.log(res)
     path: '/',
   });
 
-  return NextResponse.json({ success: true });
+  return NextResponse.json({success: true});
 }

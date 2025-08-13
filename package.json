@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier . --write './**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
@@ -16,6 +17,7 @@
     "motion": "^12.23.12",
     "next": "15.4.6",
     "next-auth": "^5.0.0-beta.29",
+    "prettier": "^3.6.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "zod": "^4.0.17",

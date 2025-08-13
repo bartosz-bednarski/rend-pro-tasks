@@ -1,30 +1,53 @@
-import { create } from 'zustand'
-import { immer } from 'zustand/middleware/immer'
+import {create} from 'zustand';
+import {immer} from 'zustand/middleware/immer';
+
+export type User = {
+  _id: string;
+  login: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  avatar: string;
+};
 
 type State = {
-   prevAvatar:File|null,
-   avatar:string;
-}
+  avatar: string;
+  _id: string;
+  firstName: string;
+  lastName: string;
+};
 
 type Actions = {
-  setPrevAvatar:(avatar:File)=>void;
-  setAvatar:(avatar:string)=>void;
-}
+  setUserData: (data: {
+    avatar: string;
+    _id: string;
+    firstName: string;
+    lastName: string;
+  }) => void;
+};
 
-export const useUsersStore = create<State&Actions>()(
-    immer((set)=>({
-      prevAvatar:null,
-      avatar:'',
-           setPrevAvatar:(avatar)=>{
-set((state) => {
-                 state.prevAvatar = avatar;
-               });
-           },
-            setAvatar:(avatar)=>{
-set((state) => {
-                 state.avatar = avatar;
-               });
-           }
-
-    }))
-)
+export const useUsersStore = create<State & Actions>()(
+  immer((set) => ({
+    prevAvatar: null,
+    avatar: '',
+    _id: '',
+    firstName: '',
+    lastName: '',
+    setUserData: (data: {
+      avatar: string;
+      _id: string;
+      firstName: string;
+      lastName: string;
+    }) => {
+      set((state) => {
+        state.avatar = data.avatar;
+        state._id = data._id;
+        state.firstName = data.firstName;
+        state.lastName = data.lastName;
+      });
+    },
+  }))
+);

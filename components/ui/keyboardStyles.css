@@ -1,9 +1,9 @@
 /* Nadpisanie stylów emoji-picker-react */
 .EmojiPickerReact .epr-category-nav {
-    background-color: #F6F6F6;
-    padding: 0px;
-    border-radius: 10px;
-    /* overflow-x: auto;
+  background-color: #f6f6f6;
+  padding: 0px;
+  border-radius: 10px;
+  /* overflow-x: auto;
     overflow-y: hidden; */
 }
 .EmojiPickerReact .epr-category-nav svg {
@@ -14,21 +14,20 @@
   font-size: 14px !important;
   font-weight: 500;
 }
-.epr-header .epr-category-nav .epr-btn{
-    background-image: none !important;
-    width: 140px!important;
-      border-radius: 10px;
-      flex: none;
+.epr-header .epr-category-nav .epr-btn {
+  background-image: none !important;
+  width: 140px !important;
+  border-radius: 10px;
+  flex: none;
 }
-.epr-header .epr-category-nav .epr-btn:focus:before{
-    border: none!important;
-    bottom: inherit;
-    right: inherit;
-    color: white;
+.epr-header .epr-category-nav .epr-btn:focus:before {
+  border: none !important;
+  bottom: inherit;
+  right: inherit;
+  color: white;
 }
-.epr-header .epr-category-nav .epr-btn:focus{
-    background-color: #6529FE;
-    
+.epr-header .epr-category-nav .epr-btn:focus {
+  background-color: #6529fe;
 }
 .epr-header .epr-category-nav .epr-btn::before {
   content: attr(aria-label);
@@ -37,20 +36,20 @@
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
- font-size: 14px;
- width: 140px!important;
- padding: 5px 14px;
- white-space: nowrap;
- font-family: 'Roboto';
- font-weight: 500;
- color: #454545;
+  font-size: 14px;
+  width: 140px !important;
+  padding: 5px 14px;
+  white-space: nowrap;
+  font-family: 'Roboto';
+  font-weight: 500;
+  color: #454545;
 }
-.epr-emoji-category-content{
-    margin: 0px!important;
+.epr-emoji-category-content {
+  margin: 0px !important;
 }
-.epr-emoji-category-label{
-    display: none!important;
+.epr-emoji-category-label {
+  display: none !important;
 }
-.epr_-kg0voo{
-    display: none!important;
+.epr_-kg0voo {
+  display: none !important;
 }
