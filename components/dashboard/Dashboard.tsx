@@ -7,7 +7,7 @@ import {useEffect} from 'react';
 import {usePocketsStore} from '@/store/usePocketsStore';
 import {TasksBoard} from './TasksBoard/TasksBoard';
 
-const Dashboard:React.FC = () => {
+export const Dashboard:React.FC = () => {
   const {getAllPockets, pockets} = usePocketsStore();
   useEffect(() => {
     getAllPockets();
@@ -25,5 +25,3 @@ const Dashboard:React.FC = () => {
     </>
   );
 };
-
-export default Dashboard

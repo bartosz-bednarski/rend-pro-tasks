@@ -65,7 +65,8 @@ const INITIAL_STATUS_FORM: FormStatusType = {
   form1Ok: false,
   form2Ok: false,
 };
-const RegisterLayout:React.FC = () => {
+
+export const RegisterLayout:React.FC = () => {
   const {setUserData} = useUsersStore();
   const router = useRouter();
 
@@ -125,4 +126,3 @@ const RegisterLayout:React.FC = () => {
     </>
   );
 };
-export default RegisterLayout

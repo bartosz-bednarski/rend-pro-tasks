@@ -1,7 +1,8 @@
-import dynamic from 'next/dynamic';
-const RegisterLayout = dynamic(() => import('@/components/Forms/Register/RegisterLayout'), { ssr: false });
-
+import { RegisterLayout } from '@/components/Forms/Register/RegisterLayout';
 
 export default function RegisterPage() {
-  return <RegisterLayout />;
+ 
+  return (
+    <RegisterLayout/>
+  );
 }

@@ -43,7 +43,7 @@ const INITIAL_LOGIN_FORM: LoginFormType = {
   error: 'Wrong login or password',
 };
 
-const LoginForm:React.FC = () => {
+export const LoginForm:React.FC = () => {
   const router = useRouter();
 
   const [loginForm, setLoginForm] = useState(INITIAL_LOGIN_FORM);
@@ -153,5 +153,3 @@ const LoginForm:React.FC = () => {
     </div>
   );
 };
-
-export default LoginForm
