@@ -1,10 +1,10 @@
 'use client';
-
+import React from 'react';
 import {ButtonToggleTasksStatus} from '@/components/ui/Buttons/ButtonToggleTasksStatus';
 import {usePocketsStore} from '@/store/usePocketsStore';
 import {useTasksStore} from '@/store/useTasksStore';
 
-export const Header = () => {
+export const Header:React.FC = () => {
   const {selectedPocket} = usePocketsStore();
   const {tasks, incompletedTasks} = useTasksStore();
   if (selectedPocket._id === '') return null;

@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import UserIcon from '@/public/assets/icons/ph_user.svg';
 import PasswordIcon from '@/public/assets/icons/carbon_password.svg';
 import LayoutImage from '@/public/assets/images/login_layout.png';
@@ -43,7 +44,7 @@ interface RegisterFormProps {
   fetchError: boolean;
 }
 
-export const RegisterForm = ({onSuccess, fetchError}: RegisterFormProps) => {
+export const RegisterForm:React.FC<RegisterFormProps> = ({onSuccess, fetchError}) => {
   const [registerForm, setRegisterForm] = useState(INITIAL_LOGIN_FORM);
   const loginHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRegisterForm((prevState: RegisterFormType) => ({

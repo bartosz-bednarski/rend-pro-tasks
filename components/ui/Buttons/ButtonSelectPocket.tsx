@@ -1,8 +1,9 @@
 'use client';
+import React from 'react';
 import {Pocket, usePocketsStore} from '@/store/usePocketsStore';
 import {useTasksStore} from '@/store/useTasksStore';
 
-export const ButtonSelectPocket = ({emoji, name, tasks, _id}: Pocket) => {
+export const ButtonSelectPocket:React.FC<Pocket> = ({emoji, name, tasks, _id}) => {
   const {selectedPocket, setSelectedPocket} = usePocketsStore();
   const {getAllTasks} = useTasksStore();
 

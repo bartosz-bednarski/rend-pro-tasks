@@ -1,9 +1,10 @@
 'use client';
+import React from 'react';
 import {ButtonCreateNewPocket} from '../../ui/Buttons/ButtonCreateNewPocket';
 import {ButtonSelectPocket} from '../../ui/Buttons/ButtonSelectPocket';
 import {usePocketsStore} from '@/store/usePocketsStore';
 
-export const Pockets = () => {
+export const Pockets:React.FC = () => {
   const {pockets, toggleModalOpen, showNewPocket} = usePocketsStore();
 
   const createNewPocketHandler = () => {

@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import {useState} from 'react';
 import AvatarDefault from '@/public/assets/images/avatar_default.png';
 
@@ -7,7 +8,7 @@ interface InputFileFormProps {
   error: string;
 }
 
-export const InputFileForm = ({success, error}: InputFileFormProps) => {
+export const InputFileForm:React.FC<InputFileFormProps> = ({success, error}) => {
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const saveImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

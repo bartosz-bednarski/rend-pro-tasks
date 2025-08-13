@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import UserIcon from '@/public/assets/icons/ph_user.svg';
 import PasswordIcon from '@/public/assets/icons/carbon_password.svg';
 import Link from 'next/link';
@@ -42,7 +43,7 @@ const INITIAL_LOGIN_FORM: LoginFormType = {
   error: 'Wrong login or password',
 };
 
-export const LoginForm = () => {
+export const LoginForm:React.FC = () => {
   const router = useRouter();
 
   const [loginForm, setLoginForm] = useState(INITIAL_LOGIN_FORM);
@@ -85,7 +86,7 @@ export const LoginForm = () => {
       return;
     }
 
-    const res = await fetch('http://localhost:3000/api/auth/login', {
+    const res = await fetch('/api/auth/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

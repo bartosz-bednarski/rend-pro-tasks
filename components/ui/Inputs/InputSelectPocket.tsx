@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import {Pocket} from '@/store/usePocketsStore';
 
 interface InputSelectPocketProps extends Pocket {
@@ -7,14 +7,14 @@ interface InputSelectPocketProps extends Pocket {
   onChange: (_id: string) => void;
 }
 
-export const InputSelectPocket = ({
+export const InputSelectPocket:React.FC<InputSelectPocketProps> = ({
   selected,
   _id,
   emoji,
   name,
   onChange,
   tasks,
-}: InputSelectPocketProps) => {
+}) => {
   return (
     <label
       key={_id}

@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import {ButtonToggleModal} from '../ui/Buttons/ButtonToggleModal';
 import {ModalNewTask} from '../ui/Modals/ModalNewTask';
 import {Sidebar} from './Sidebar/Sidebar';
@@ -7,7 +7,7 @@ import {useEffect} from 'react';
 import {usePocketsStore} from '@/store/usePocketsStore';
 import {TasksBoard} from './TasksBoard/TasksBoard';
 
-export const Dashboard = () => {
+export const Dashboard:React.FC = () => {
   const {getAllPockets, pockets} = usePocketsStore();
   useEffect(() => {
     getAllPockets();

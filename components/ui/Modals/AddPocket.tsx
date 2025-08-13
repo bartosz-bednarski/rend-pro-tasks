@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import ArrowIcon from '@/public/assets/icons/fluent_arrow-left-28-filled.svg';
 import {EmojiKeyboard} from '../EmojiKeyboard';
 import {useState} from 'react';
@@ -10,7 +11,7 @@ const INITIAL_POCKET_FORM = {
   error: false,
 };
 
-export const AddPocket = () => {
+export const AddPocket:React.FC = () => {
   const {hideNewPocket, getAllPockets} = usePocketsStore();
   const [pocketForm, setPocketForm] = useState(INITIAL_POCKET_FORM);
 

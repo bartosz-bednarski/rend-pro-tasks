@@ -1,10 +1,10 @@
 'use client';
+import React from 'react';
 import LayoutImage from '@/public/assets/images/register_main_view_layout.jpg';
 import z from 'zod';
 import {useState} from 'react';
 import {InputTextForm} from '../../ui/Inputs/InputTextForm';
 import {InputFileForm} from '../../ui/Inputs/InputFileForm';
-import {useUsersStore} from '@/store/useUsersStore';
 
 type RegisterMainViewFormType = {
   firstName: {
@@ -48,7 +48,7 @@ interface RegisterMainViewProps {
   onSuccess: (firstName: string, lastName: string) => void;
 }
 
-export const RegisterMainViewForm = ({onSuccess}: RegisterMainViewProps) => {
+export const RegisterMainViewForm:React.FC<RegisterMainViewProps> = ({onSuccess}) => {
   const [mainViewForm, setMainViewForm] = useState(
     INITIAL_REGISTER_MAIN_VIEW_FORM
   );

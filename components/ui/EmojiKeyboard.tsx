@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import dynamic from 'next/dynamic';
 import {Categories} from 'emoji-picker-react';
 import './keyboardStyles.css';
@@ -8,7 +9,7 @@ const EmojiPicker = dynamic(() => import('emoji-picker-react'), {ssr: false});
 interface EmojiKeyboardProps {
   onClick: (emoji: string) => void;
 }
-export const EmojiKeyboard = ({onClick}: EmojiKeyboardProps) => {
+export const EmojiKeyboard:React.FC<EmojiKeyboardProps> = ({onClick}) => {
   return (
     <>
       <EmojiPicker

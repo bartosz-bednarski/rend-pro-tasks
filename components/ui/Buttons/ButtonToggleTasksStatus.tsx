@@ -1,8 +1,8 @@
 'use client';
-
+import React from 'react';
 import {useTasksStore} from '@/store/useTasksStore';
 
-export const ButtonToggleTasksStatus = () => {
+export const ButtonToggleTasksStatus:React.FC = () => {
   const {showIncompletedTasks, toggleShowCompletedTasks} = useTasksStore();
 
   return (

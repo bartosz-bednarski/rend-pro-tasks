@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import Icon from '@/public/assets/icons/fluent_key-command-24-regular.svg';
 
 interface ButtonCreateNewPocketProps {
@@ -6,10 +7,10 @@ interface ButtonCreateNewPocketProps {
   mobilePlus: boolean;
 }
 
-export const ButtonCreateNewPocket = ({
+export const ButtonCreateNewPocket:React.FC<ButtonCreateNewPocketProps> = ({
   onClick,
   mobilePlus,
-}: ButtonCreateNewPocketProps) => {
+}) => {
   return (
     <button
       onClick={onClick}

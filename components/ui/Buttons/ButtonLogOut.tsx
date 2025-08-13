@@ -1,4 +1,5 @@
 'use client'
+import React from 'react';
 import AvatarDefault from '@/public/assets/images/avatar_default.png'
 import { User, useUsersStore } from '@/store/useUsersStore';
 import { useRouter } from 'next/navigation';
@@ -30,7 +31,7 @@ import { useEffect } from 'react';
             console.error('Błąd pobierania tasks', err);
           }
         }
-export const ButtonLogOut = () =>{
+export const ButtonLogOut:React.FC = () =>{
   const {avatar,firstName,lastName,setUserData} = useUsersStore()
   const router = useRouter()
 useEffect(()=>{

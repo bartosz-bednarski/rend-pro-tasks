@@ -1,10 +1,11 @@
 'use client';
+import React from 'react';
 import IconArrow from '@/public/assets/icons/ph_caret-down-light.svg';
 import IconCommand from '@/public/assets/icons/fluent_key-command-24-regular-white.svg';
 import {usePocketsStore} from '@/store/usePocketsStore';
 import {motion} from 'motion/react';
 
-export const ButtonToggleModal = () => {
+export const ButtonToggleModal:React.FC = () => {
   const {modalOpen, newPocketOpen, toggleModalOpen, hideNewPocket} =
     usePocketsStore();
 

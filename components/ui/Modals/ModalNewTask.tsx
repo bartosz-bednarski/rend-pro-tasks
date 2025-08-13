@@ -1,10 +1,10 @@
 'use client';
-
+import React from 'react';
 import {AddPocket} from './AddPocket';
 import {AddTask} from './AddTask';
 import {usePocketsStore} from '@/store/usePocketsStore';
 import {motion} from 'motion/react';
-export const ModalNewTask = () => {
+export const ModalNewTask:React.FC = () => {
   const {modalOpen, newPocketOpen} = usePocketsStore();
 
   if (!modalOpen) {

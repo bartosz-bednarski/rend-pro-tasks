@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import DotsIcon from '@/public/assets/icons/mage_dots.svg';
 import DotsWhiteIcon from '@/public/assets/icons/mage_dots_white.svg';
 import TrashIcon from '@/public/assets/icons/iconoir_trash.svg';
@@ -7,7 +8,7 @@ import {Task, useTasksStore} from '@/store/useTasksStore';
 import {useState} from 'react';
 import {AnimatePresence, motion} from 'motion/react';
 
-export const TasksItem = ({description, isCompleted, _id}: Task) => {
+export const TasksItem:React.FC<Task> = ({description, isCompleted, _id}) => {
   const {selectedPocket, getAllPockets} = usePocketsStore();
   const {getAllTasks} = useTasksStore();
 

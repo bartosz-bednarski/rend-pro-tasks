@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import {ButtonCreateNewPocket} from '@/components/ui/Buttons/ButtonCreateNewPocket';
 import {usePocketsStore} from '@/store/usePocketsStore';
 import {InputSelectPocket} from '../Inputs/InputSelectPocket';
@@ -13,7 +13,7 @@ const INITIAL_TASK_FORM = {
   errorDescription: false,
 };
 
-export const AddTask = () => {
+export const AddTask:React.FC = () => {
   const {pockets, showNewPocket, getAllPockets, selectedPocket} =
     usePocketsStore();
   const {getAllTasks} = useTasksStore();

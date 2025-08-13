@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import {RegisterForm} from './RegisterForm';
 import {useState} from 'react';
 import {RegisterMainViewForm} from './RegisterMainView';
@@ -65,7 +66,7 @@ const INITIAL_STATUS_FORM: FormStatusType = {
   form2Ok: false,
 };
 
-export const RegisterLayout = () => {
+export const RegisterLayout:React.FC = () => {
   const {setUserData} = useUsersStore();
   const router = useRouter();
 
