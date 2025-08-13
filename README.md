@@ -33,14 +33,13 @@ npm install
 npm run dev
 ```
 
-2. To run the project in prod:
-2.1 Build app
+2. To run the project in prod build the app first
 
 ```
 npm run build
 ```
 
-2.2 Run the project:
+Run app:
 
 ```
 npm start
