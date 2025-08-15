@@ -64,14 +64,15 @@ export const UpdateUserForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<UpdateUserFormFields> = async (data) => {
     if (data.firstName !== firstName || data.lastName !== lastName) {
-      updateUserAPI(setError, reset, data);
-      getUserDataAPI(setUserData);
+     await updateUserAPI(setError, reset, data);
+     await getUserDataAPI(setUserData);
     }
     if (data.avatar && data.avatar.length > 0) {
       const file = data.avatar[0];
       const formData = new FormData();
       formData.append('file', file);
       await putAvatarAPI(formData, setUserData);
+      await getUserDataAPI(setUserData);
     }
     toggleModalOpen();
   };
