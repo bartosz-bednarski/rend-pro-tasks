@@ -7,6 +7,7 @@ import {usePocketsStore} from '@/store/usePocketsStore';
 import {Task, useTasksStore} from '@/store/useTasksStore';
 import {useState} from 'react';
 import {AnimatePresence, motion} from 'motion/react';
+import {deleteTaskAPI, toggleTaskStatusAPI} from '@/lib/api/tasks';
 
 export const TasksItem: React.FC<Task> = ({description, isCompleted, _id}) => {
   const {selectedPocket, getAllPockets} = usePocketsStore();
@@ -19,40 +20,11 @@ export const TasksItem: React.FC<Task> = ({description, isCompleted, _id}) => {
   };
 
   const completedStatusHandler = async () => {
-    try {
-      const res = await fetch('/api/tasks/toggleTaskStatus', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          pocketId: selectedPocket._id,
-          taskId: _id,
-          isCompleted: !isCompleted,
-        }),
-      });
-      const data: {success: boolean; data: []} = await res.json();
-
-      if (!data.success) return;
-    } catch (err) {
-      console.error('Błąd pobierania tasks', err);
-    }
+    await toggleTaskStatusAPI(selectedPocket, _id, isCompleted);
     getAllTasks(selectedPocket._id);
   };
   const deleteTaskHandler = async () => {
-    try {
-      const res = await fetch('/api/tasks/deleteTask', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          pocketId: selectedPocket._id,
-          taskId: _id,
-          isCompleted: !isCompleted,
-        }),
-      });
-      const data: {success: boolean} = await res.json();
-      if (!data.success) return;
-    } catch (err) {
-      console.error('Błąd pobierania tasks', err);
-    }
+    await deleteTaskAPI(selectedPocket, _id, isCompleted);
     getAllTasks(selectedPocket._id);
     getAllPockets();
   };

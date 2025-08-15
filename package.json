@@ -10,6 +10,7 @@
     "prettier": "prettier . --write './**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.1",
     "bcrypt": "^6.0.0",
     "emoji-picker-react": "^4.13.2",
     "immer": "^10.1.1",
@@ -20,6 +21,7 @@
     "prettier": "^3.6.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-hook-form": "^7.62.0",
     "zod": "^4.0.17",
     "zustand": "^5.0.7"
   },

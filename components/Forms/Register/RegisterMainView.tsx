@@ -1,109 +1,67 @@
 'use client';
-import React from 'react';
+import React, {useEffect} from 'react';
 import LayoutImage from '@/public/assets/images/register_main_view_layout.jpg';
 import z from 'zod';
 import {useState} from 'react';
-import {InputTextForm} from '../../ui/Inputs/InputTextForm';
-import {InputFileForm} from '../../ui/Inputs/InputFileForm';
-
-type RegisterMainViewFormType = {
-  firstName: {
-    value: string;
-    success: boolean;
-    error: string;
-  };
-  lastName: {
-    value: string;
-    success: boolean;
-    error: string;
-  };
-  avatar: {
-    success: boolean;
-    error: string;
-  };
-};
-const registerMainViewSchema = z.object({
+import {SubmitHandler, useForm} from 'react-hook-form';
+import {zodResolver} from '@hookform/resolvers/zod';
+import AvatarDefault from '@/public/assets/images/avatar_default.png';
+const schema = z.object({
   firstName: z.string().min(1, 'First Name must be at least 1 characters long'),
   lastName: z.string().min(1, 'Last Name must be at least 1 characters long'),
+  avatar: z
+    .any()
+    .refine((files) => files?.length === 1, 'Please upload one file'),
 });
 
-const INITIAL_REGISTER_MAIN_VIEW_FORM: RegisterMainViewFormType = {
-  firstName: {
-    value: '',
-    success: true,
-    error: '',
-  },
-  lastName: {
-    value: '',
-    success: true,
-    error: '',
-  },
-  avatar: {
-    success: true,
-    error: '',
-  },
-};
+type FormFields = z.infer<typeof schema>;
 
 interface RegisterMainViewProps {
-  onSuccess: (firstName: string, lastName: string) => void;
+  onSuccess: (firstName: string, lastName: string, avatar: File) => void;
 }
 
 export const RegisterMainViewForm: React.FC<RegisterMainViewProps> = ({
   onSuccess,
 }) => {
-  const [mainViewForm, setMainViewForm] = useState(
-    INITIAL_REGISTER_MAIN_VIEW_FORM
-  );
-
-  const firstNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMainViewForm((prevState: RegisterMainViewFormType) => ({
-      ...prevState,
-      firstName: {...prevState.firstName, value: e.target.value},
-    }));
-  };
-
-  const lastNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMainViewForm((prevState: RegisterMainViewFormType) => ({
-      ...prevState,
-      lastName: {...prevState.lastName, value: e.target.value},
-    }));
-  };
-
-  const submitFormHandler = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setMainViewForm({...INITIAL_REGISTER_MAIN_VIEW_FORM});
-    const result = registerMainViewSchema.safeParse({
-      firstName: mainViewForm.firstName.value,
-      lastName: mainViewForm.lastName.value,
-    });
-
-    if (!result.success) {
-      const newState = {...mainViewForm};
-      result.error.issues.forEach((err) => {
-        if (err.path[0] === 'firstName') {
-          newState.firstName.success = false;
-          newState.firstName.error = err.message;
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const {
+    register,
+    watch,
+    handleSubmit,
+    setError,
+    formState: {errors},
+  } = useForm<FormFields>({
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      avatar: undefined,
+    },
+    resolver: zodResolver(schema),
+  });
+  const avatarFileList = watch('avatar');
+  useEffect(() => {
+    if (avatarFileList && avatarFileList.length > 0) {
+      const file = avatarFileList[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result === 'string') {
+          setAvatarPreview(reader.result);
         }
-        if (err.path[0] === 'lastName') {
-          newState.lastName.success = false;
-          newState.lastName.error = err.message;
-        }
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setAvatarPreview(null);
+    }
+  }, [avatarFileList]);
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    try {
+      onSuccess(data.firstName, data.lastName, data.avatar[0]);
+    } catch (error) {
+      console.log(error);
+      setError('root', {
+        message: `${String(error).replace('Error:', '')}`,
       });
-      setMainViewForm(newState);
-      return;
     }
-    const avatar = localStorage.getItem('avatar');
-    if (!avatar) {
-      setMainViewForm((prev) => ({
-        ...prev,
-        avatar: {
-          success: false,
-          error: 'Please upload your avatar',
-        },
-      }));
-      return;
-    }
-    onSuccess(mainViewForm.firstName.value, mainViewForm.lastName.value);
   };
 
   return (
@@ -116,31 +74,62 @@ export const RegisterMainViewForm: React.FC<RegisterMainViewProps> = ({
           <p className="font-normal text-[14px]">
             We just need some more information...
           </p>
-          <form onSubmit={submitFormHandler} className="flex flex-col gap-2">
-            <InputTextForm
-              value={mainViewForm.firstName.value}
-              onChange={firstNameHandler}
-              success={mainViewForm.firstName.success}
-              error={mainViewForm.firstName.error}
-              placeholder="First Name"
-            />
-            <InputTextForm
-              value={mainViewForm.lastName.value}
-              onChange={lastNameHandler}
-              success={mainViewForm.lastName.success}
-              error={mainViewForm.lastName.error}
-              placeholder="Last Name"
-            />
-            <InputFileForm
-              success={mainViewForm.avatar.success}
-              error={mainViewForm.avatar.error}
-            />
-
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-2"
+          >
+            <div className="w-full h-10 flex flex-row items-center justify-center bg-gray-50 py-2.5 px-3 gap-3 rounded-lg">
+              <input
+                {...register('firstName')}
+                type="text"
+                className="w-full border-0 outline-none size-4 placeholder-gray-800 "
+                placeholder="First Name"
+              />
+            </div>
+            {errors.firstName && (
+              <p className="text-red-500 text-sm">{errors.firstName.message}</p>
+            )}
+            <div className="w-full h-10 flex flex-row items-center justify-center bg-gray-50 py-2.5 px-3 gap-3 rounded-lg">
+              <input
+                {...register('lastName')}
+                type="text"
+                className="w-full border-0 outline-none size-4 placeholder-gray-800 "
+                placeholder="Last Name"
+              />
+            </div>
+            {errors.lastName && (
+              <p className="text-red-500 text-sm">{errors.lastName.message}</p>
+            )}
+            <div className="flex flex-row gap-2.5">
+              <label
+                htmlFor="avatar"
+                className="relative w-full h-10 flex flex-row items-center justify-center bg-gray-50 py-2.5 px-3 gap-3 rounded-lg cursor-pointer"
+              >
+                <span className="text-gray-800 text-md text-left w-full">
+                  Click to upload your avatar
+                </span>
+                <input
+                  {...register('avatar')}
+                  id="avatar"
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                />
+              </label>
+              <img
+                src={avatarPreview ? avatarPreview : AvatarDefault.src}
+                alt="Avatar preview"
+                className="w-[38px] h-[38px] rounded-full object-cover"
+              />
+            </div>
+            {errors.avatar && (
+              <p className="text-red-500 text-sm">Please upload file</p>
+            )}
             <button
               type="submit"
               className="py-2.5 px-4 bg-purple-600 text-white rounded-lg w-fit h-min"
             >
-              Login me
+              Register
             </button>
           </form>
         </div>

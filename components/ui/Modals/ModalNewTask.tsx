@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import {AddPocket} from './AddPocket';
-import {AddTask} from './AddTask';
 import {usePocketsStore} from '@/store/usePocketsStore';
 import {motion} from 'motion/react';
+import {CreatePocketForm} from '@/components/Forms/Pocket/CreatePocketForm';
+import {CreateTaskForm} from '@/components/Forms/Task/CreateTaskForm';
 export const ModalNewTask: React.FC = () => {
   const {modalOpen, newPocketOpen} = usePocketsStore();
 
@@ -19,8 +19,8 @@ export const ModalNewTask: React.FC = () => {
         className="fixed left-0 top-0 flex  w-screen h-full backdrop-blur-xs bg-white opacity-50"
       ></motion.div>
       <div className="fixed flex justify-center items-end z-10 top-0 left-0 w-screen h-screen">
-        {newPocketOpen && <AddPocket />}
-        {!newPocketOpen && <AddTask />}
+        {newPocketOpen && <CreatePocketForm />}
+        {!newPocketOpen && <CreateTaskForm />}
       </div>
     </>
   );

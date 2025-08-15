@@ -1,4 +1,4 @@
-import {LoginForm} from '@/components/Forms/LoginForm';
+import {LoginForm} from '@/components/Forms/Login/LoginForm';
 import LayoutImage from '@/public/assets/images/login_layout.png';
 export default function LoginPage() {
   return (

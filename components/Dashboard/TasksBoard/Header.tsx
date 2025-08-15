@@ -6,6 +6,7 @@ import {ButtonToggleTasksStatus} from '@/components/ui/Buttons/ButtonToggleTasks
 import {usePocketsStore} from '@/store/usePocketsStore';
 import {useTasksStore} from '@/store/useTasksStore';
 import {AnimatePresence, motion} from 'motion/react';
+import {deletePocketAPI} from '@/lib/api/pockets';
 
 export const Header: React.FC = () => {
   const {selectedPocket, getAllPockets, resetSelectedPocket} =
@@ -18,19 +19,7 @@ export const Header: React.FC = () => {
     setShowDeleteButton((prevState) => !prevState);
   };
   const deletePocketHandler = async () => {
-    try {
-      const res = await fetch('/api/pockets/deletePocket', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          pocketId: selectedPocket._id,
-        }),
-      });
-      const data: {success: boolean} = await res.json();
-      if (!data.success) return;
-    } catch (err) {
-      console.error('Błąd pobierania tasks', err);
-    }
+    await deletePocketAPI(selectedPocket);
     getAllPockets();
     resetActiveTasks();
     resetSelectedPocket();

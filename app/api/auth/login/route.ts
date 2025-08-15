@@ -20,11 +20,9 @@ export async function POST(req: Request) {
   const data = await res.json();
   const token = data.token;
 
-  // decode token to get expiry
   const decoded: {exp?: number} = jwtDecode(token);
   const expiresAt = decoded.exp ? new Date(decoded.exp * 1000) : undefined;
 
-  // set cookie
   const cookieStore = await cookies();
   cookieStore.set('session', token, {
     httpOnly: true,

@@ -29,7 +29,7 @@ type Actions = {
     lastName: string;
   }) => void;
   toggleModalOpen: () => void;
-  updateAvatar: (aavatar: string) => void;
+  updateAvatar: (avatar: string) => void;
 };
 
 export const useUsersStore = create<State & Actions>()(

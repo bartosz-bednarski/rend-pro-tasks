@@ -6,7 +6,6 @@ export async function POST(req: Request) {
   const cookieStore = await cookies();
   const tokenCookie = cookieStore.get('session');
   const token = tokenCookie?.value;
-
   const formData = await req.formData();
   const file = formData.get('file') as File;
   if (!file) {
